@@ -1,9 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 sns.set(style="whitegrid")
 plt.rcParams['figure.figsize'] = (7,4)
+
+# ✅ Create folder
+os.makedirs("images", exist_ok=True)
 
 df = pd.read_csv("bank_data.csv")
 
@@ -16,8 +20,7 @@ df['age_group'] = pd.cut(df['age'], bins=bins, labels=labels)
 
 print("Total Customers:", len(df))
 
-# ✅ Save plots instead of showing
-
+# ✅ Save plots
 sns.countplot(x='deposit', data=df)
 plt.title("Deposit Subscription")
 plt.savefig("images/deposit_plot.png")
